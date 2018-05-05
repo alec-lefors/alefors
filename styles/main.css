@@ -131,9 +131,8 @@ h2 {
 
 input {
 	border-radius: 50px;
-	border: none;
 	padding: 14px;
-	width: 100%;
+	width: calc(100% - 28px);
 	font-size: 18px;
 	margin: 10px 0px 10px;
 	border: solid black 1px;
@@ -143,7 +142,7 @@ textarea {
 	border-radius: 20px;
 	border: none;
 	padding: 14px;
-	width: 100%;
+	width: calc(100% - 28px);
 	font-size: 18px;
 	margin: 10px 0px 10px;
 	height: 100px;
@@ -182,6 +181,10 @@ button:hover {
 
 	.text {
 		padding: 3em 10% 3em;
+	}
+
+	input {
+		max-width: 100%;
 	}
 
 	.navbar {
