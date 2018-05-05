@@ -6,14 +6,48 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="heading">
-		<h1>Alec LeFors</h1>
-		<ul class="list-horizontal">
-			<li>Web Developer</li>
-			<li>Graphic Designer</li>
-			<li>Programmer</li>
-			
-		</ul>
+	<div class="splash">
+		<div class="navbar">
+			<ul>
+				<li><a href="#projects">PROJECTS</a></li>
+				<li><a href="#about">ABOUT ME</a></li>
+				<li>CONTACT</li>
+			</ul>
+		</div>
+		<div class="headline" id="middletext">
+			<h1>ALEC LEFORS</h1>
+			<ul class="list-horizontal">
+				<li>Web Developer</li>
+				<li>Graphic Designer</li>
+				<li>Programmer</li>
+			</ul>
+		</div>
 	</div>
+	<div class="projects" id="projects">
+		<h2>PROJECTS</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+	<div class="about" id="about">
+		<h2>ABOUT ME</h2>
+		<img src="images/profile.jpg" id="profile">
+		<p>Pellentesque tempor turpis vel posuere mollis. Aenean tempus nisl a eros ullamcorper, eu pretium urna venenatis. Etiam libero sem, hendrerit in pharetra non, viverra sed massa. Maecenas lacinia molestie sapien, et sollicitudin velit lacinia at. Curabitur sed eros sed dolor commodo scelerisque. Curabitur dictum convallis porttitor. Morbi id tellus placerat, pharetra lacus sed, lacinia felis. In et orci sit amet sem accumsan molestie. Vestibulum ut dictum enim. Quisque dictum, tellus in maximus lobortis, turpis nulla pellentesque mauris, sed facilisis nisl enim vitae ex.</p>
+		<p>Id officiis omnis eaque autem eligendi expedita quam repellendus. Voluptas amet voluptatibus praesentium minus commodi non quo. Sit et blanditiis ut. Et voluptas dicta quas cum et qui autem. Ratione odit rem optio aut minima nesciunt qui. Omnis ipsa voluptatem natus similique rerum porro.</p>
+
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/smoothscroll.js"></script>
+	<script type="text/javascript">
+		var height = $('#middletext').height() / 2;
+		$('#middletext').css('margin-top', 'calc(50vh - ' + height + 'px)');
+		$('img').bind('contextmenu', function(e) {
+			return false;
+		});
+		$('img').on('dragstart', function(event) { event.preventDefault(); });
+	</script>
 </body>
 </html>

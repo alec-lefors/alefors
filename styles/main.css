@@ -1,32 +1,80 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 html {
-	margin: 0;
-	height: 100%;
-	font-family: 'Lato', sans-serif;
+	font-family: sans-serif;
+	background-color: rgb(244, 244, 244);
 }
 
 body {
-	background-color: rgb(85, 136, 219);
-	background: linear-gradient(to right, rgb(85, 136, 219), rgb(32, 170, 249));
-	text-align: center;
+	margin: 0;
+	line-height: 1.7em;
 }
 
 h1 {
 	font-weight: 900;
 	letter-spacing: 1px;
     font-size: 3em;
+    text-align: center;
 }
 
-.heading {
+h2 {
+	font-weight: 900;
+	letter-spacing: 1px;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.splash {
+	width: 100vw;
+	height: 100vh;
 	display: inline-block;
-	text-align: center;
 	vertical-align: middle;
-	background-color: rgba(240, 240, 240, 0.8);
-	padding: 0px 20px 20px 20px;
-	border-radius: 3px 3px 0px 0px;
-	max-width: 590px;
-	min-width: 520px;
+}
+
+.projects {
+	background-color: #d6d6d6;
+	padding: 3em 20% 3em;
+}
+
+.about {
+	padding: 3em 20% 3em;
+	display: inline-block;
+}
+
+#profile {
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;
+	float: right;
+	display: inline;
+	margin: 10px;
+}
+
+.headline {
+	text-align: center;
+	margin-top: 50vh;
+}
+
+.navbar {
+	text-align: center;
+	display: block;
+	width: 100vw;
+	position: fixed;
+	list-style-type: none;
+	background-color: rgb(244, 244, 244);
+}
+
+.navbar li {
+	display: inline;
+	padding: 0 10% 0;
+}
+
+.navbar li:first-child {
+	padding-left: 0;
+}
+
+.navbar li:last-child {
+	padding-right: 0;
 }
 
 .list-horizontal{
@@ -58,5 +106,11 @@ h1 {
 
 	body {
 		margin: 0;
+	}
+
+	#profile {
+		float: none;
+		display: block;
+		margin: 0 auto;
 	}
 }
