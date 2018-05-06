@@ -11,6 +11,7 @@
 			<ul>
 				<li><a href="#projects">PROJECTS</a></li>
 				<li><a href="#about">ABOUT ME</a></li>
+				<!-- <li><a href="#services">SERVICES</a></li> -->
 				<li><a href="#contact">CONTACT</a></li>
 			</ul>
 		</div>
@@ -23,8 +24,20 @@
 			</ul>
 		</div>
 	</div>
-	<div class="text" id="projects">
+	<div class="text content" id="projects">
 		<h2>PROJECTS</h2>
+		<!-- <div class="carouselbox">
+			<ol class="carouselcontent">
+				<li class="current">
+					<img src="images/profile.jpg">
+					<p>Me</p>
+				</li>
+				<li>
+					<img src="images/profile.jpg">
+					<p>Also Me</p>
+				</li>
+			</ol>
+		</div> -->
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -32,21 +45,43 @@
 		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div>
-	<div class="text" id="about">
+	<div class="text content" id="about">
 		<h2>ABOUT ME</h2>
 		<img src="images/profile.jpg" id="profile">
-		<p>Pellentesque tempor turpis vel posuere mollis. Aenean tempus nisl a eros ullamcorper, eu pretium urna venenatis. Etiam libero sem, hendrerit in pharetra non, viverra sed massa. Maecenas lacinia molestie sapien, et sollicitudin velit lacinia at. Curabitur sed eros sed dolor commodo scelerisque. Curabitur dictum convallis porttitor. Morbi id tellus placerat, pharetra lacus sed, lacinia felis. In et orci sit amet sem accumsan molestie. Vestibulum ut dictum enim. Quisque dictum, tellus in maximus lobortis, turpis nulla pellentesque mauris, sed facilisis nisl enim vitae ex.</p>
-		<p>Id officiis omnis eaque autem eligendi expedita quam repellendus. Voluptas amet voluptatibus praesentium minus commodi non quo. Sit et blanditiis ut. Et voluptas dicta quas cum et qui autem. Ratione odit rem optio aut minima nesciunt qui. Omnis ipsa voluptatem natus similique rerum porro.</p>
+		<p>By playing with computers from a very young age I discovered a natural talent for utilizing technology. My family called me the 'computer-whiz' because of how well I work with computers. I learned my first programming language, C#, when I was 10 and wanting to build my own web browser.</p>
+		<p>Grew up in Baton Rouge, Louisiana and moved to Indianapolis, Indiana when I was 14 with no intention of pursuing computer science. After taking two semesters of web design in high school I immediately knew what I wanted to do after college. After learning HTML and CSS I took two AP Computer Science courses and learned my next two languages: Python and Java.</p>
+		<p>I am now a student at Purdue University pursuing a major in Web Design and Programming and <i>hopefully</i> a minor in Computer Science.</p>
 	</div>
-	<div class="text" id="contact">
+	<!-- <div class="text content" id="services">
+		<h2>SERVICES</h2>
+		<p>Java, Python, HTML/CSS/JS, Wordpress</p>
+	</div> -->
+	<div class="text dark" id="contact">
 		<h2>CONTACT</h2>
-		<form>
-			<input type="" name="name" placeholder="Name">
-			<input type="" name="email" placeholder="Email">
-			<textarea placeholder="Message"></textarea>
+		<form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbwKlGCrdu33No3lVtYcLmHFypVr9TOubxkREWzk/exec">
+			<input name="name" placeholder="Name">
+			<input name="email" placeholder="Email">
+			<textarea name="message" placeholder="Message"></textarea>
+			<input id="honeypot" type="text" name="honeypot" value="" style="display: none;">
 			<button>Submit</button>
 		</form>
+		<div style="display: none;" id="thankyou_message">
+			<h3>Thanks for contacting me!</h3>
+			<p>I'll get back to you shortly.</p>
+		</div>
 	</div>
+	<footer class="text dark">
+		<p class="footertext" style="font-size: inherit; color: inherit;">Alec LeFors</p>
+		<p class="footertext right">
+			<a style="margin-right: 10px;" href="https://twitter.com/amenably"><img src="images/Twitter_Social_Icon_Circle_White.png" width="32" height="32"></a>
+			<a href="https://github.com/alec-lefors"><img src="images/GitHub-Mark-Light-120px-plus.png" width="32" height="32"></a>
+		</p>
+		<span class="break"></span>
+		<p class="footertext">
+			<a href="mailto:alefors13@gmail.com">alefors13@gmail.com</a>
+		</p>
+		<p class="footertext right">&#169 2018 Alec LeFors. All rights reserved</p>
+	</footer>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/smoothscroll.js"></script>
 	<script type="text/javascript">
@@ -56,6 +91,18 @@
 			return false;
 		});
 		$('img').on('dragstart', function(event) { event.preventDefault(); });
+
+		$('.content').each(function(i, obj) {
+			if (i % 2 == 0) {$(this).css('background-color', '#d6d6d6');}
+		});
+		if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
+		else {$('.navbar').css('display', 'block');}
+		window.onresize = function(event)
+		{
+			if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
+			else {$('.navbar').css('display', 'block');}
+		}
 	</script>
+	<script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/learn-to-send-email-via-google-script-html-no-server/master/form-submission-handler.js"></script>
 </body>
 </html>

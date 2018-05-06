@@ -2,7 +2,7 @@
 
 html {
 	font-family: sans-serif;
-	background-color: rgb(244, 244, 244);
+	background-color: #f4f4f4;
 }
 
 body {
@@ -10,7 +10,13 @@ body {
 }
 
 p {
+	font-family: 'Lato', sans-serif;
 	line-height: 1.7em;
+}
+
+@keyframes appear {
+	from {opacity: 0}
+	to {opacity: 1;}
 }
 
 h1 {
@@ -18,8 +24,11 @@ h1 {
 	letter-spacing: 1px;
 	font-size: 3em;
 	text-align: center;
-	-webkit-text-stroke: 2px black;
-	color: transparent;
+	color: #f4f4f4;
+	background: url('../images/IMG_1574.jpg') center fixed;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: appear 1s;
 }
 
 h2 {
@@ -27,7 +36,7 @@ h2 {
 	letter-spacing: 1px;
 	font-size: 2.5em;
 	text-align: center;
-	-webkit-text-stroke: 2px black;
+	-webkit-text-stroke: 1.5px black;
 	color: transparent;
 }
 
@@ -38,20 +47,29 @@ h2 {
 	vertical-align: middle;
 }
 
-#projects {
-	background-color: #d6d6d6;
-}
-
 #contact {
-	background-color: #d6d6d6;
+	background-color: #48494b;
 }
 
-#about {
-	display: inline-block;
+footer {
+	background-color: #3b3d40;
+}
+
+footer a {
+	color: #c6c6c6;
+	text-decoration: none;
 }
 
 .text {
 	padding: 3em 20% 3em;
+}
+
+.dark {
+	color: rgb(244, 244, 244);
+}
+
+.dark h2 {
+	-webkit-text-stroke: 1.5px rgb(244, 244, 244);
 }
 
 #profile {
@@ -60,6 +78,33 @@ h2 {
 	width: 170px;
 	float: right;
 	display: inline;
+	margin: 10px;
+	border: solid black 1px;
+}
+
+.carouselbox {
+	width: 100%;
+	overflow: hidden;
+}
+
+.carouselcontent {
+	margin: 0;
+	padding: 0;
+}
+
+.carouselcontent li {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	list-style: none;
+	text-align: center;
+	display: inline-block;
+}
+
+.carouselcontent img {
+	border-radius: 50%;
+	height: 220px;
+	width: 220px;
 	margin: 10px;
 	border: solid black 1px;
 }
@@ -86,7 +131,7 @@ h2 {
 
 .navbar li {
 	display: inline;
-	padding: 0 10% 0;
+	padding: 0 5% 0;
 }
 
 .navbar li:first-child {
@@ -152,23 +197,35 @@ textarea {
 
 button {
 	border-radius: 50px;
-	border: solid black 1px;
+	border: solid rgb(244, 244, 244) 1px;
 	padding: 14px;
 	font-size: 18px;
+	color: rgb(244, 244, 244);
 	background-color: transparent;
 	transition: 0.3s ease;
 }
 
 button:hover {
-	background-color: black;
-	color: rgb(244, 244, 244);
+	background-color: rgb(244, 244, 244);;
+	color: #3b3d40;
 }
 
-@media only screen and (max-width: 600px) {
-	.splash {
+.footertext {
+	color: #c6c6c6;
+	font-size: 10pt;
+	display: inline-block;
+}
 
-	}
+.right {
+	float: right;
+}
 
+.break {
+	height: 5px;
+	display: block;
+}
+
+@media only screen and (max-width: 650px) {
 	body {
 		margin: 0;
 	}
@@ -181,6 +238,7 @@ button:hover {
 
 	.text {
 		padding: 3em 10% 3em;
+		vertical-align: middle;
 	}
 
 	input {
@@ -189,5 +247,14 @@ button:hover {
 
 	.navbar {
 		display: none;
+	}
+
+	.footertext {
+		float: none;
+		display: block;
+	}
+
+	.break {
+		height: 0;
 	}
 }

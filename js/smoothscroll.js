@@ -13,7 +13,7 @@ $('a[href*="#"]')
 		if (target.length) {
 			// Only prevent default if animation is actually gonna happen
 			event.preventDefault();
-			$('html, body').animate({scrollTop: target.offset().top - 50}, 1000);
+			$('html, body').animate({scrollTop: target.offset().top - 60}, 1000);
 		}
 	}
 });
