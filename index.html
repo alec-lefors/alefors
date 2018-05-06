@@ -16,7 +16,7 @@
 			</ul>
 		</div>
 		<div class="headline" id="middletext">
-			<h1>ALEC LEFORS</h1>
+			<h1 id="loadingheader">ALEC LEFORS</h1>
 			<ul class="list-horizontal">
 				<li>Web Developer</li>
 				<li>Graphic Designer</li>
@@ -101,6 +101,12 @@
 		{
 			if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
 			else {$('.navbar').css('display', 'block');}
+		}
+		window.addEventListener("load", showImage);
+
+		function showImage() {
+			var header = $('#loadingheader');
+			header.attr('id', 'header')
 		}
 	</script>
 	<script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/learn-to-send-email-via-google-script-html-no-server/master/form-submission-handler.js"></script>
