@@ -27,6 +27,11 @@ h1 {
 	color: black;
 }
 
+a {
+	text-decoration: none;
+	color: black;
+}
+
 #header {
 	background: url('../images/IMG_1574.jpg') center fixed;
 	-webkit-background-clip: text;
