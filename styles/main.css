@@ -182,7 +182,11 @@ footer a {
 	content: '';
 }
 
-input {
+input[type=text] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
 	border-radius: 50px;
 	padding: 14px;
 	width: calc(100% - 28px);
@@ -192,6 +196,10 @@ input {
 }
 
 textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
 	border-radius: 20px;
 	border: none;
 	padding: 14px;
@@ -204,6 +212,10 @@ textarea {
 }
 
 button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
 	border-radius: 50px;
 	border: solid rgb(244, 244, 244) 1px;
 	padding: 14px;
