@@ -35,11 +35,10 @@ a {
 #header {
 	background: url('../images/IMG_1574.jpg') fixed center;
 	background-size: cover;
-	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: rgba(244, 244, 244, .7);
 	-webkit-background-clip: text;
 	animation: appear 1s;
 	animation-play-state: running;
-	-webkit-text-stroke: 1px #f4f4f4;
 }
 
 #loadingsplash {
