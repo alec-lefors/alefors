@@ -42,8 +42,17 @@ a {
 	-webkit-text-stroke: 1px #f4f4f4;
 }
 
-#loadingheader
-{
+#loadingsplash {
+	opacity: 0;
+	animation-play-state: paused;
+	width: 100%;
+	height: 100vh;
+	display: inline-block;
+	vertical-align: middle;
+	color: white;
+}
+
+#loadingheader {
 	opacity: 0;
 	animation-play-state: paused;
 }
@@ -57,7 +66,7 @@ h2 {
 	color: transparent;
 }
 
-.splash {
+#splash {
 	width: 100%;
 	height: 100vh;
 	display: inline-block;

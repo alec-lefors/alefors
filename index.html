@@ -8,7 +8,7 @@
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<div class="splash">
+	<div id="loadingsplash">
 		<div class="navbar">
 			<ul>
 				<li><a href="#projects">PROJECTS</a></li>
@@ -106,6 +106,8 @@
 		function animateHeader() {
 			var header = $('#loadingheader');
 			header.attr('id', 'header');
+			var splash = $('#loadingsplash');
+			splash.attr('id', 'splash');
 		}
 	</script>
 	<script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/learn-to-send-email-via-google-script-html-no-server/master/form-submission-handler.js"></script>
