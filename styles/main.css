@@ -15,7 +15,7 @@ p {
 }
 
 @keyframes appear {
-	from {opacity: 0;}
+	from {opacity: 0}
 	to {opacity: 1;}
 }
 
@@ -33,13 +33,11 @@ a {
 }
 
 #header {
-	background: url('../images/IMG_1574.jpg') fixed center;
-	background-size: cover;
-	-webkit-text-fill-color: transparent;
+	background: url('../images/IMG_1574.jpg') center fixed;
 	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 	animation: appear 1s;
 	animation-play-state: running;
-	-webkit-text-stroke: 1px #f4f4f4;
 }
 
 #loadingheader
@@ -62,11 +60,6 @@ h2 {
 	height: 100vh;
 	display: inline-block;
 	vertical-align: middle;
-	background: linear-gradient(rgba(11, 11, 11, .9), rgba(11, 11, 11, .9)), url('../images/IMG_1574.jpg') fixed center;
-	background-size: cover;
-	color: white;
-	animation: appear 2s;
-	animation-play-state: running;
 }
 
 #contact {
@@ -187,7 +180,8 @@ footer a {
 
 .list-horizontal li:before {
 	content: '\00a0\2022\00a0\00a0';
-	color: white;
+	color: #FFF;
+	color: rgb(0, 0, 0);
 	font-size: 11px;
 }
 
