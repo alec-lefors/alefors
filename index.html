@@ -99,11 +99,11 @@
 			if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
 			else {$('.navbar').css('display', 'block');}
 		}
-		window.addEventListener("load", showImage);
+		window.addEventListener("load", animateHeader);
 
-		function showImage() {
+		function animateHeader() {
 			var header = $('#loadingheader');
-			header.attr('id', 'header')
+			header.attr('id', 'header');
 		}
 	</script>
 	<script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/learn-to-send-email-via-google-script-html-no-server/master/form-submission-handler.js"></script>
