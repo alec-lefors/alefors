@@ -56,7 +56,7 @@ h2 {
 }
 
 .splash {
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
 	display: inline-block;
 	vertical-align: middle;
@@ -248,7 +248,7 @@ button:hover {
 }
 
 .break {
-	height: 5px;
+	height: 7px;
 	display: block;
 }
 
