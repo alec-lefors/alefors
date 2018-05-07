@@ -43,17 +43,18 @@ a {
 }
 
 #loadingsplash {
-	opacity: 0;
+	opacity: 1;
+	background-color: linear-gradient(rgba(72,73,75,.7),rgba(11,11,11,.95));
 	animation-play-state: paused;
 	width: 100%;
 	height: 100vh;
 	display: inline-block;
 	vertical-align: middle;
-	color: white;
+	color: black;
 }
 
 #loadingheader {
-	opacity: 0;
+	opacity: 1;
 	animation-play-state: paused;
 }
 
