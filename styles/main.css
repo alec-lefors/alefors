@@ -157,6 +157,10 @@ footer a {
 	z-index: 1;
 }
 
+#loadingnav {
+	color: black;
+}
+
 .navbar ul {
 	padding: 0;
 	margin: 0;
