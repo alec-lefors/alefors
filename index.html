@@ -8,15 +8,15 @@
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+	<div class="navbar" id="navbarunhovering">
+		<ul>
+			<li><a href="#projects">PROJECTS</a></li>
+			<li><a href="#about">ABOUT ME</a></li>
+			<!-- <li><a href="#services">SERVICES</a></li> -->
+			<li><a href="#contact">CONTACT</a></li>
+		</ul>
+	</div>
 	<div id="loadingsplash">
-		<div class="navbar">
-			<ul>
-				<li><a href="#projects">PROJECTS</a></li>
-				<li><a href="#about">ABOUT ME</a></li>
-				<!-- <li><a href="#services">SERVICES</a></li> -->
-				<li><a href="#contact">CONTACT</a></li>
-			</ul>
-		</div>
 		<div class="headline" id="middletext">
 			<h1 id="loadingheader">ALEC LEFORS</h1>
 			<ul class="list-horizontal">
@@ -101,8 +101,8 @@
 			if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
 			else {$('.navbar').css('display', 'block');}
 		}
-		window.addEventListener("load", animateHeader);
 
+		window.addEventListener("load", animateHeader);
 		function animateHeader() {
 			var header = $('#loadingheader');
 			header.attr('id', 'header');
