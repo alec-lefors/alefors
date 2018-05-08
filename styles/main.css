@@ -33,7 +33,7 @@ a {
 }
 
 #header {
-	background: url('../images/IMG_1574.jpg') fixed center;
+	background: url('../images/background.jpg') fixed center;
 	background-size: cover;
 	-webkit-text-fill-color: rgba(244, 244, 244, .7);
 	-webkit-background-clip: text;
@@ -71,7 +71,7 @@ h2 {
 	height: 100vh;
 	display: inline-block;
 	vertical-align: middle;
-	background: linear-gradient(rgba(72,73,75,.7),rgba(11,11,11,.95)), url('../images/IMG_1574.jpg') fixed center;
+	background: linear-gradient(rgba(72,73,75,.7),rgba(11,11,11,.95)), url('../images/background.jpg') fixed center;
 	background-size: cover;
 	color: white;
 	animation: appear 2s;
