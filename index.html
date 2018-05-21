@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Alec LeFors - Homepage</title>
 	<link rel="stylesheet" type="text/css" href="styles/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+	<link rel="icon" href="favicon.png" type="image/x-icon">
 </head>
 <body>
 	<img src="images/background.jpg" style="display: none;">
@@ -28,22 +28,33 @@
 		</div>
 	</div>
 	<div class="text content" id="projects">
-		<h2>PROJECTS</h2>
-		<!-- <div class="carouselbox">
-			<ol class="carouselcontent">
-				<li class="current">
-					<img src="images/profile.jpg">
-					<p>Me</p>
-				</li>
-				<li>
-					<img src="images/profile.jpg">
-					<p>Also Me</p>
-				</li>
-			</ol>
-		</div> -->
-		<img src="images/battleship.png" width="300" style="border-radius: 3px; border: solid black 1px;">
-		<h3><a href="https://github.com/alec-lefors/Battleship">Battleship - Java</a></h3>
-		<p>A classic board game made available cross platform using the Java Runtime Enviroment. Two players. Online only.</p>
+		<div class="animatedslider"></div>
+		<h2 id="projectheader">PROJECTS</h2>
+		<div class="pagecontainer">
+			<div class="page">
+				<img src="images/BlogDesktop.png">
+				<h3>Noblesville Fashion Show - WordPress</h3>
+				<p>2016-2017</p>
+				<p>The Noblesville Fashion Club's website was a WordPress run blog where members could write and share their fashion tips and videos. Club sponsors and leaders used the blog to make announcements as well as promoting their annual fashion show.</p>
+			</div>
+			<div class="page">
+				<img src="images/CleanDesktop.png">
+				<h3>Just John's Cleaning - Adobe Illustrator and Photoshop</h3>
+				<p>Just a class project I worked on. I learned a lot about SVGs and vector based graphics using Adobe Illustrator.</p>
+			</div>
+			<div class="page">
+				<img src="images/WebDesktop.png">
+				<h3>Ms. Richardson's Web Design Class - PHP</h3>
+				<p>This website became a self-made content management system for my Web Design teacher. It allowed her to easily make SQL tables and databases as well as making shared folders on her classroom server for her students to access.</p>
+			</div>
+			<div class="page">
+				<img src="images/battleship.png">
+				<h3><a href="https://github.com/alec-lefors/Battleship">Battleship - Java</a></h3>
+				<p>A classic board game made available cross platform using the Java Runtime Enviroment. Two players. Online only.</p>
+			</div>
+		</div>
+		<a href="#projects"><div class="btnleft btn" onclick="nextPage(false)"></div></a>
+		<a href="#projects"><div class="btnright btn" onclick="nextPage(true)"></div></a>
 	</div>
 	<div class="text content" id="about">
 		<h2>ABOUT ME</h2>
@@ -62,13 +73,22 @@
 			<input name="name" placeholder="Name" type="text">
 			<input name="email" placeholder="Email" type="text">
 			<textarea name="message" placeholder="Message"></textarea>
+			<h3>What can I help you with?</h3>
+			<div class="radio"><label><input type="radio" name="project" value="Website" checked><p>Website</p></label></div>
+			<div class="radio"><label><input type="radio" name="project" value="Graphic"><p>Graphic</p></label></div>
+			<div class="radio"><label><input type="radio" name="project" value="Program"><p>Program</p></label></div>
 			<input id="honeypot" type="text" name="honeypot" value="" style="display: none;">
-			<button>Submit</button>
+			<button class="submitbutton">Submit</button>
 		</form>
 		<div style="display: none;" id="thankyou_message">
 			<h2>THANK YOU</h2>
 			<h3>I have recieved your message.</h3>
 			<p>I will get back to you shortly.</p>
+		</div>
+		<div style="display: none;" id="error_message">
+			<h2>ERROR</h2>
+			<h3>There was an error processing your request.</h3>
+			<p>Please try again later.</p>
 		</div>
 	</div>
 	<footer class="text dark">
@@ -85,9 +105,11 @@
 	</footer>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/smoothscroll.js"></script>
+	<script data-cfasync="false" src="js/contactform.js"></script>
 	<script type="text/javascript">
 		var height = $('#middletext').height() / 2;
 		$('#middletext').css('margin-top', 'calc(50vh - ' + height + 'px)');
+
 		$('img').bind('contextmenu', function(e) {
 			return false;
 		});
@@ -96,12 +118,16 @@
 		$('.content').each(function(i, obj) {
 			if (i % 2 == 0) {$(this).css('background-color', '#d6d6d6');}
 		});
+
 		if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
 		else {$('.navbar').css('display', 'block');}
 		window.onresize = function(event)
 		{
+			var height = $('#middletext').height() / 2;
+			$('#middletext').css('margin-top', 'calc(50vh - ' + height + 'px)');
 			if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
 			else {$('.navbar').css('display', 'block');}
+			$(".pagecontainer").height = $('.active').height() + 32;
 		}
 
 		window.addEventListener("load", animateHeader);
@@ -113,7 +139,45 @@
 			var navbar = $('.navbar');
 			navbar.attr('id', '');
 		}
+
+		$('.btn').mousedown(function(e){ e.preventDefault(); });
+		var page = 0;
+		var pages = 0;
+		$('.page').each(function(i, obj) {
+			pages++;
+			if(i == 0) {
+				$(this).attr('class', 'page');
+			}
+			else $(this).attr('class', 'page unactive');
+		});
+		function nextPage(tf) {
+			$('.animatedslider').attr('style', 'width: calc(100vw + 1000px)')
+			tf ? page++ : page--;
+			var displaypage = page % pages + 1;
+			if (displaypage <= 0) {
+				displaypage = pages;
+				page = pages - 1;
+			}
+			setTimeout(function() {
+				$('.page').each(function(i, obj) {
+					if(displaypage - 1 == i) {
+						$(this).attr('class', 'page');
+						animateHeight($(this).height());
+					}
+					else {
+						$(this).attr('class', 'page unactive');
+					}
+				});
+			}, 300);
+			setTimeout(function() {
+				$('.animatedslider').attr('style', '')
+			}, 800);
+		}
+		function animateHeight(newHeight){
+			$(".pagecontainer").animate({
+				height: newHeight + 32
+			}, 500);
+		}
 	</script>
-	<script data-cfasync="false" type="text/javascript" src="https://cdn.rawgit.com/dwyl/learn-to-send-email-via-google-script-html-no-server/master/form-submission-handler.js"></script>
 </body>
 </html>
