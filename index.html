@@ -9,8 +9,7 @@
 	<meta name="description" content="Web Developer, Graphic Designer, Programmer. Purdue University Class of '22.">
 </head>
 <body>
-	<img src="images/background.jpg" style="display: none;">
-	<div class="navbar" id="loadingnav">
+	<div class="navbar">
 		<ul>
 			<li><a href="#projects">PROJECTS</a></li>
 			<li><a href="#about">ABOUT ME</a></li>
@@ -18,15 +17,16 @@
 			<li><a href="#contact">CONTACT</a></li>
 		</ul>
 	</div>
-	<div id="loadingsplash">
-		<div class="headline" id="middletext">
-			<h1 id="loadingheader">ALEC LEFORS</h1>
+	<div id="splash">
+		<div class="headline">
+			<h1>ALEC LEFORS</h1>
 			<ul class="list-horizontal">
 				<li>Web Developer</li>
 				<li>Graphic Designer</li>
 				<li>Programmer</li>
 			</ul>
 		</div>
+		<span id="theme"></span>
 	</div>
 	<div class="text content" id="projects">
 		<div class="animatedslider"></div>
@@ -95,8 +95,8 @@
 	<footer class="text dark">
 		<p class="footertext" style="font-size: inherit; color: inherit;">Alec LeFors</p>
 		<p class="footertext right">
-			<a style="margin-right: 10px;" href="https://twitter.com/amenably"><img src="images/Twitter_Social_Icon_Circle_White.png" width="32" height="32"></a>
-			<a href="https://github.com/alec-lefors"><img src="images/GitHub-Mark-Light-120px-plus.png" width="32" height="32"></a>
+			<a style="margin-right: 10px;" href="https://twitter.com/amenably"><img class="imgicon" src="images/Twitter_Social_Icon_Circle_White.png" width="32" height="32"></a>
+			<a href="https://github.com/alec-lefors"><img class="imgicon" src="images/GitHub-Mark-Light-120px-plus.png" width="32" height="32"></a>
 		</p>
 		<span class="break"></span>
 		<p class="footertext">
@@ -108,9 +108,6 @@
 	<script src="js/smoothscroll.js"></script>
 	<script data-cfasync="false" src="js/contactform.js"></script>
 	<script type="text/javascript">
-		var height = $('#middletext').height() / 2;
-		$('#middletext').css('margin-top', 'calc(50vh - ' + height + 'px)');
-
 		$('img').bind('contextmenu', function(e) {
 			return false;
 		});
@@ -124,21 +121,9 @@
 		else {$('.navbar').css('display', 'block');}
 		window.onresize = function(event)
 		{
-			var height = $('#middletext').height() / 2;
-			$('#middletext').css('margin-top', 'calc(50vh - ' + height + 'px)');
 			if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}
 			else {$('.navbar').css('display', 'block');}
 			$(".pagecontainer").height = $('.active').height() + 32;
-		}
-
-		window.addEventListener("load", animateHeader);
-		function animateHeader() {
-			var header = $('#loadingheader');
-			header.attr('id', 'header');
-			var splash = $('#loadingsplash');
-			splash.attr('id', 'splash');
-			var navbar = $('.navbar');
-			navbar.attr('id', '');
 		}
 
 		$('.btn').mousedown(function(e){ e.preventDefault(); });

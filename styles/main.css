@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
-
 html {
 	font-family: sans-serif;
 	background-color: #f4f4f4;
@@ -10,57 +8,32 @@ body {
 }
 
 p {
-	font-family: 'Lato', sans-serif;
+	font-family: 'Helvetica Neue', sans-serif;
 	line-height: 1.7em;
-}
-
-@keyframes appear {
-	from {opacity: 0;}
-	to {opacity: 1;}
+	font-weight: 300;
 }
 
 h1 {
-	font-weight: 900;
-	letter-spacing: 1px;
-	font-size: 3em;
-	text-align: center;
-	color: black;
+	letter-spacing: -2px;
+	font-size: 4.5em;
+	color: rgba(244, 244, 244, 1);
+	font-family: 'HelveticaNeue-CondensedBlack', 'Helvetica Neue', sans-serif;
+	font-weight: 1200;
+	margin-bottom: 0;
 }
 
 a {
 	text-decoration: none;
 	color: black;
+	transition: all .3s ease;
 }
 
-#header {
-	background: url('../images/background.jpg') fixed center;
-	background-size: cover;
-	-webkit-text-fill-color: rgba(244, 244, 244, .7);
-	-webkit-background-clip: text;
-	animation: appear 1s;
-	animation-play-state: running;
-	overflow: hidden;
-}
-
-#loadingsplash {
-	opacity: 1;
-	background-color: linear-gradient(rgba(72,73,75,.7),rgba(11,11,11,.95));
-	animation-play-state: paused;
-	width: 100%;
-	height: 100vh;
-	display: inline-block;
-	vertical-align: middle;
-	color: black;
-	transition: color 1s ease;
-}
-
-#loadingheader {
-	animation-play-state: paused;
-	transition: all 1s ease;
+a:hover {
+	color: rgb(219, 21, 67);
 }
 
 h2 {
-	font-weight: 900;
+	font-family: 'Helvetica Neue', sans-serif;
 	letter-spacing: 1px;
 	font-size: 2.5em;
 	text-align: center;
@@ -69,15 +42,37 @@ h2 {
 }
 
 #splash {
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	display: inline-block;
 	vertical-align: middle;
-	background: linear-gradient(rgba(72,73,75,.7),rgba(11,11,11,.95)), url('../images/background.jpg') fixed center;
-	background-size: cover;
+	background-color: rgb(219, 21, 67);
 	color: white;
-	animation: appear 2s;
-	animation-play-state: running;
+	max-height: 1100px;
+}
+
+#theme {
+	width: 50%;
+	height: 90%;
+	max-height: 2066px;
+	display: block;
+	position: absolute;
+	bottom: -10%;
+	right: 5%;
+	background: url('../images/ironman.png') center no-repeat;
+	background-size: contain;
+	transition: all .8s ease;
+}
+
+.headline {
+	text-align: left;
+	height: 200px;
+	top: calc(50vh - 100px);
+	padding-left: 10%;
+	font-size: 17px;
+	font-weight: 100;
+	position: absolute;
+	z-index: 1;
 }
 
 .unactive {
@@ -212,13 +207,6 @@ footer a {
 	float: right;
 	display: inline;
 	margin: 10px;
-	border: solid black 1px;
-	box-shadow: 1px 1px 10px black;
-}
-
-.headline {
-	text-align: center;
-	margin-top: 50vh;
 }
 
 .navbar {
@@ -230,10 +218,6 @@ footer a {
 	list-style-type: none;
 	color: white;
 	z-index: 1;
-}
-
-#loadingnav a {
-	color: black;
 }
 
 .navbar ul {
@@ -269,6 +253,7 @@ footer a {
 
 .list-horizontal{
     padding-left: 0px;
+    margin-top: 0;
 }
 
 .list-horizontal li {
@@ -278,20 +263,10 @@ footer a {
 .list-horizontal li:before {
 	content: '\00a0\2022\00a0\00a0';
 	color: white;
-	font-size: 12px;
-}
-
-#loadingsplash .list-horizontal li:before {
-	content: '\00a0\2022\00a0\00a0';
-	color: black;
-	font-size: 12px;
+	font-size: inherit;
 }
 
 .list-horizontal li:first-child:before {
-	content: '';
-}
-
-#loadingsplash .list-horizontal li:first-child:before {
 	content: '';
 }
 
@@ -299,7 +274,6 @@ input[type=text] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-
 	border-radius: 50px;
 	padding: 14px;
 	width: calc(100% - 28px);
@@ -340,8 +314,8 @@ button {
 }
 
 button:hover {
-	background-color: rgb(244, 244, 244);;
-	color: #3b3d40;
+	background-color: rgb(219, 21, 67);
+	border-color: rgb(219, 21, 67);
 }
 
 
@@ -373,7 +347,7 @@ input[type=radio]:hover::after {
 	height: 32px;
 	left: 2px;
 	top: 2px;
-	background-color: rgba(14, 14, 14, .5);
+	background-color: rgba(219, 21, 67, .5);
 }
 
 input[type=radio]:checked::after {
@@ -381,7 +355,7 @@ input[type=radio]:checked::after {
 	height: 28px;
 	left: 4px;
 	top: 4px;
-	background-color: rgba(14, 14, 14, .95);
+	background-color: rgba(219, 21, 67, .95);
 }
 
 .radio {
@@ -411,6 +385,15 @@ label p {
 .break {
 	height: 7px;
 	display: block;
+}
+
+.imgicon {
+	transition: all .3s ease;
+	border-radius: 50%;
+}
+
+.imgicon:hover {
+	background-color: rgb(219, 21, 67);
 }
 
 @media only screen and (max-width: 650px) {
@@ -454,12 +437,43 @@ label p {
 		right: 10%;
 	}
 
+	.headline {
+		text-align: center;
+		top: 50px;
+		width: calc(100% - 40px);
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	#theme {
+		width: 100%;
+		height: 1000px;
+		top: 300px;
+		right: 0;
+	}
+
+	.list-horizontal li {
+		display: block;
+	}
+
+	.list-horizontal li:before {
+		content: '';
+	}
+
 }
 
 @media only screen and (max-width: 500px) {
 	.btn {
 		position: initial;
 		margin: 0 auto;
+	}
+}
+
+@media only screen and (max-height: 600px) {
+	#theme {
+		width: 50%;
+		height: 1000px;
+		top: 50px;
 	}
 }
 
