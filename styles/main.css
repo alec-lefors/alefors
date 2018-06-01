@@ -44,7 +44,7 @@ a {
 
 #loadingsplash {
 	opacity: 1;
-	background-color: linear-gradient(rgba(44,44,44,.7),rgba(44,44,44,.95));
+	background-color: linear-gradient(rgba(244,244,244,.7),rgba(244,244,244,.95));
 	animation-play-state: paused;
 	width: 100%;
 	height: 100vh;
@@ -73,7 +73,7 @@ h2 {
 	height: 100vh;
 	display: inline-block;
 	vertical-align: middle;
-	background: linear-gradient(rgba(244,244,244,.7),rgba(244,244,244,.95)), url('../images/background.jpg') fixed center;
+	background: linear-gradient(rgba(44,44,44,.7),rgba(44,44,44,.95)), url('../images/background.jpg') fixed center;
 	background-size: cover;
 	color: black;
 	animation: appear 2s;
@@ -228,7 +228,7 @@ footer a {
 	width: 100%;
 	position: absolute;
 	list-style-type: none;
-	color: white;
+	color: black;
 	z-index: 1;
 }
 
