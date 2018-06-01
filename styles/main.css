@@ -35,7 +35,7 @@ a {
 #header {
 	background: url('../images/background.jpg') fixed center;
 	background-size: cover;
-	-webkit-text-fill-color: rgba(44, 44, 44, .7);
+	-webkit-text-fill-color: rgba(244, 244, 244, .7);
 	-webkit-background-clip: text;
 	animation: appear 1s;
 	animation-play-state: running;
@@ -44,7 +44,7 @@ a {
 
 #loadingsplash {
 	opacity: 1;
-	background-color: linear-gradient(rgba(244,244,244,.7),rgba(244,244,244,.95));
+	background-color: linear-gradient(rgba(44,44,44,.7),rgba(44,44,44,.95));
 	animation-play-state: paused;
 	width: 100%;
 	height: 100vh;
@@ -228,7 +228,7 @@ footer a {
 	width: 100%;
 	position: absolute;
 	list-style-type: none;
-	color: black;
+	color: white;
 	z-index: 1;
 }
 
@@ -260,7 +260,7 @@ footer a {
 	padding: 20px;
 	transition: text-shadow 0.2s ease;
 	font-size: 20px;
-	color: white;
+	color: inherit;
 }
 
 .navbar a:hover {
@@ -277,7 +277,7 @@ footer a {
 
 .list-horizontal li:before {
 	content: '\00a0\2022\00a0\00a0';
-	color: black;
+	color: inherit;
 	font-size: 12px;
 }
 
