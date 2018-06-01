@@ -75,7 +75,7 @@ h2 {
 	vertical-align: middle;
 	background: linear-gradient(rgba(44,44,44,.7),rgba(44,44,44,.95)), url('../images/background.jpg') fixed center;
 	background-size: cover;
-	color: black;
+	color: white;
 	animation: appear 2s;
 	animation-play-state: running;
 }
@@ -228,7 +228,7 @@ footer a {
 	width: 100%;
 	position: absolute;
 	list-style-type: none;
-	color: black;
+	color: white;
 	z-index: 1;
 }
 
