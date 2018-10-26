@@ -53,11 +53,11 @@ h2 {
 
 #theme {
 	width: 50%;
-	height: 90%;
+	height: 120%;
 	max-height: 2066px;
 	display: block;
 	position: absolute;
-	bottom: -10%;
+	bottom: -30%;
 	right: 5%;
 	background: url('../images/ironman.png') center no-repeat;
 	background-size: contain;
@@ -132,11 +132,6 @@ h2 {
 	-webkit-text-stroke: none;
 }
 
-#projects {
-	overflow: hidden;
-	position: relative;
-}
-
 #projects img {
 	max-width: 100%;
 	max-height: 300px;
@@ -190,6 +185,9 @@ footer a {
 
 .text {
 	padding: 3em 20% 3em;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
 }
 
 .dark {
@@ -207,6 +205,10 @@ footer a {
 	float: right;
 	display: inline;
 	margin: 10px;
+}
+
+#profile::after {
+	float: none;
 }
 
 .navbar {
@@ -382,6 +384,10 @@ label p {
 	float: right;
 }
 
+.right::after {
+	float: none;
+}
+
 .break {
 	height: 7px;
 	display: block;
@@ -390,10 +396,64 @@ label p {
 .imgicon {
 	transition: all .3s ease;
 	border-radius: 50%;
+	border: solid 1px rgba(255, 255, 255, 0);
 }
 
 .imgicon:hover {
 	background-color: rgb(219, 21, 67);
+	border: solid 1px rgb(219, 21, 67);
+}
+
+@media only screen and (max-width: 500px) {
+	.btn {
+		position: initial;
+		margin: 0 auto;
+	}
+}
+
+@media only screen and (max-height: 600px) {
+	#theme {
+		width: 50%;
+		height: 1000px;
+		top: 50px;
+	}
+}
+
+@media only screen and (min-height: 1100px) {
+	#theme {
+		width: 50%;
+		bottom: -400px;
+	}
+
+	.headline {
+		top: 450px;
+	}
+}
+
+@supports(mix-blend-mode:difference) {
+	.btn {
+		border: solid white 1px;
+		mix-blend-mode: difference;
+	}
+
+	.btnleft::after {
+		-webkit-text-stroke: 1px white;
+	}
+
+	.btnright::after {
+		-webkit-text-stroke: 1px white;
+	}
+
+	.btnright:hover::after, .btnleft:hover::after {
+		color: black;
+	}
+
+	#projectheader {
+		position: relative;
+		mix-blend-mode: difference;
+		z-index: 2;
+		-webkit-text-stroke: 1.5px white;
+	}
 }
 
 @media only screen and (max-width: 650px) {
@@ -439,16 +499,17 @@ label p {
 
 	.headline {
 		text-align: center;
-		top: 50px;
+		top: calc(50vh - 150px);
 		width: calc(100% - 40px);
 		padding-left: 20px;
 		padding-right: 20px;
+		text-shadow: 2px 2px 5px black;
 	}
 
 	#theme {
 		width: 100%;
 		height: 1000px;
-		top: 300px;
+		bottom: -300px;
 		right: 0;
 	}
 
@@ -460,45 +521,4 @@ label p {
 		content: '';
 	}
 
-}
-
-@media only screen and (max-width: 500px) {
-	.btn {
-		position: initial;
-		margin: 0 auto;
-	}
-}
-
-@media only screen and (max-height: 600px) {
-	#theme {
-		width: 50%;
-		height: 1000px;
-		top: 50px;
-	}
-}
-
-@supports(mix-blend-mode:difference) {
-	.btn {
-		border: solid white 1px;
-		mix-blend-mode: difference;
-	}
-
-	.btnleft::after {
-		-webkit-text-stroke: 1px white;
-	}
-
-	.btnright::after {
-		-webkit-text-stroke: 1px white;
-	}
-
-	.btnright:hover::after, .btnleft:hover::after {
-		color: black;
-	}
-
-	#projectheader {
-		position: relative;
-		mix-blend-mode: difference;
-		z-index: 2;
-		-webkit-text-stroke: 1.5px white;
-	}
 }

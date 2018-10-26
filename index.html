@@ -114,7 +114,8 @@
 		$('img').on('dragstart', function(event) { event.preventDefault(); });
 
 		$('.content').each(function(i, obj) {
-			if (i % 2 == 0) {$(this).css('background-color', '#d6d6d6');}
+			if (i % 2 == 0) $(this).css('background-color', '#d6d6d6');
+			else $(this).css('background-color', '#f4f4f4');
 		});
 
 		if ($('.navbar').height() > 63) {$('.navbar').css('display', 'none');}

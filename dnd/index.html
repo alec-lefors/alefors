@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dungeons and Dragons</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Players</h1>
+	</div>
+	<div class="container" id="characters">
+		
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var database = function() {
+			var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/1/public/basic?alt=json';
+			$.getJSON(url, function(data) {
+				$("#characters").empty();
+				console.log(data);
+				$.each(data.feed.entry, function(i, field){
+					var theme = (field.title.$t == "Monster" || field.title.$t == "Enemy") ? "text-white bg-danger" : "text-white bg-success";
+					$("#characters").append("<div class='card " + theme + "' style='width: 20rem; padding: 1rem; margin: 2rem;'><div class='cardbody' id='" + "c" +i + "'><h5 class='card-title'>" + field.title.$t + "</h5>");
+					var dict = field.content.$t;
+					var array = field.content.$t.split(', ');
+					console.log(array);
+					$("#c" + i).append("<p class='card-text'>" + array + "</p></div></div>");
+				})
+			})
+		};
+		setInterval(database, 1000);
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
