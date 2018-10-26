@@ -30,6 +30,7 @@ a {
 
 a:hover {
 	color: rgb(219, 21, 67);
+
 }
 
 h2 {
@@ -47,8 +48,6 @@ h2 {
 	display: inline-block;
 	vertical-align: middle;
 	background-color: rgb(219, 21, 67);
-	color: white;
-	max-height: 1100px;
 }
 
 #theme {
@@ -246,7 +245,7 @@ footer a {
 	padding: 20px;
 	transition: text-shadow 0.2s ease;
 	font-size: 20px;
-	color: white;
+	color: inherit;
 }
 
 .navbar a:hover {
@@ -266,6 +265,7 @@ footer a {
 	content: '\00a0\2022\00a0\00a0';
 	color: white;
 	font-size: inherit;
+
 }
 
 .list-horizontal li:first-child:before {
