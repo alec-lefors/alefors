@@ -40,9 +40,14 @@
 						levelfield = "NPC"
 					} else if (field.title.$t.includes("Friendly")) {
 						theme = "text-white bg-dark";
-						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success' role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
-						levelfield = info.playername + " the " + info.race + " " + info.class;
-						speed = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
+						if (info.playername == null) {
+							levelfield = info.race + " " + info.class;
+							speed = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
+						} else {
+							healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success' role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
+							levelfield = info.playername + " the " + info.race + " " + info.class;
+							speed = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
+						}
 					} else {
 						theme = "bg-light";
 						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success' role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
