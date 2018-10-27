@@ -3,6 +3,8 @@
 <head>
 	<title>Dungeons and Dragons</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
 	<div class="container">
@@ -38,11 +40,11 @@
 						theme = "text-white bg-success";
 					} else {
 						theme = "bg-light";
-						healthbar = "<div class='progress' style='height: 30px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
+						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
 						levelfield = "Level " + info.level + " " + info.class;
 						gold = ("<li class='list-group-item text-dark'>" + info.gold + "<img src='gold.png' width='15' style='padding-bottom:2px;'/></li>");
 					}
-					htmlcode += ("<div class='container col-md-12 col-lg-4' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>" + info.initiative + " - " + field.title.$t + "</h5>");
+					htmlcode += ("<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>" + info.initiative + " - " + field.title.$t + "</h5>");
 					htmlcode += ("<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div><ul class='list-group list-group-flush'>" + gold + "</ul></div></div>");
 					$('#characters').append(htmlcode);
 				})
