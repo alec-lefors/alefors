@@ -34,18 +34,24 @@
 					var healthbar = "";
 					var levelfield = "";
 					var gold = "";
-					if (field.title.$t.includes("Monster") || field.title.$t.includes("Enemy")) {
+					var speed = "";
+					if (field.title.$t.includes("Monster") || field.title.$t.includes("Enemy") || field.title.$t.includes("Unfriendly")) {
 						theme = "text-white bg-danger";
+						levelfield = "NPC"
 					} else if (field.title.$t.includes("Friendly")) {
-						theme = "text-white bg-success";
+						theme = "text-white bg-dark";
+						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success' role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
+						levelfield = info.playername + " the " + info.race + " " + info.class;
+						speed = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
 					} else {
 						theme = "bg-light";
-						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
+						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success' role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
 						levelfield = "Level " + info.level + " " + info.class;
-						gold = ("<li class='list-group-item text-dark'>" + info.gold + "<img src='gold.png' width='15' style='padding-bottom:2px;'/></li>");
+						gold = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.gold + "<img src='gold.png' width='15' style='padding-bottom:2px;'/></p>");
+						speed = ("<p style='top: 2.7rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
 					}
-					htmlcode += ("<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>" + info.initiative + " - " + field.title.$t + "</h5>");
-					htmlcode += ("<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div><ul class='list-group list-group-flush'>" + gold + "</ul></div></div>");
+					htmlcode += ("<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>" + info.initiative + " - " + field.title.$t + "</h5>" + gold + speed);
+					htmlcode += ("<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div></div></div>");
 					$('#characters').append(htmlcode);
 				})
 			})
