@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dice Roller</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 2rem;">
+		<a class="navbar-brand" href="#">Dungeons and Dragons</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<a class="nav-item nav-link" href="../">Home</a>
+			<a class="nav-item nav-link active" href="">Dice<span class="sr-only">(current)</span></a>
+		</div>
+	</nav>
+	<div class="container">
+		<h2>Dice Roller</h2>
+		<div class="btn-group dropright" id="selection">
+			<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose your character</button>
+			<div class="dropdown-menu">
+				<button class="dropdown-item" id="2" onClick="selection(this.id)">Elqen</a>
+				<button class="dropdown-item" id="3" onClick="selection(this.id)">Boiler Makh</a>
+				<button class="dropdown-item" id="4" onClick="selection(this.id)">Tealeaf</a>
+				<button class="dropdown-item" id="5" onClick="selection(this.id)">Smithwick</a>
+				<button class="dropdown-item" id="6" onClick="selection(this.id)">Maester Conn</a>
+				<button class="dropdown-item" id="7" onClick="selection(this.id)">Draionir</a>
+			</div>
+		</div>
+		<div id="diceapp">
+			
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var htmlcode = "";
+		function selection(clicked_id)
+		{
+			console.log(clicked_id);
+			var url = "https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/" + clicked_id + "/public/basic?alt=json";
+			$.getJSON(url, function(data) {
+				console.log(data);
+				var name = data.feed.title.$t;
+
+				htmlcode += "<h2>" + name + "</h2>";
+				$('#diceapp').html(htmlcode);
+			});
+		}
+	</script>
+	
+</body>
+</html>

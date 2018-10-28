@@ -7,8 +7,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 2rem;">
+		<a class="navbar-brand" href="#">Dungeons and Dragons</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+			<!-- <a class="nav-item nav-link" href="/dice">Dice</a> -->
+		</div>
+	</nav>
 	<div class="container">
-		<h1>Dungeons and Dragons</h1>
+		<h2>Player Stats</h2>
 	</div>
 	<div class="container">
 		<div class="row" id="characters">
@@ -35,9 +45,12 @@
 					var levelfield = "";
 					var gold = "";
 					var speed = "";
+					var checks = "";
+					var start = "";
 					if (field.title.$t.includes("Monster") || field.title.$t.includes("Enemy") || field.title.$t.includes("Unfriendly")) {
 						theme = "text-white bg-danger";
 						levelfield = "NPC"
+						start = "<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>";
 					} else if (field.title.$t.includes("Friendly")) {
 						theme = "text-white bg-dark";
 						if (info.playername == null) {
@@ -48,21 +61,42 @@
 							levelfield = info.playername + " the " + info.race + " " + info.class;
 							speed = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
 						}
+						start = "<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>";
 					} else {
 						theme = "bg-light";
+						start = "<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;' data-toggle='collapse' href='#" + info.playername + "'' role='button' aria-expanded='false' aria-controls='" + info.playername + "' onClick='reloadToggle();'><h5 class='card-title'>";
 						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success' role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
 						levelfield = "Level " + info.level + " " + info.class;
 						gold = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.gold + "<img src='gold.png' width='15' style='padding-bottom:2px;'/></p>");
 						speed = ("<p style='top: 2.7rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
+						checks = ("<ul class='list-group list-group-flush collapse' id='" + info.playername + "'>");
+						for (var l = 18; l < test.length - 1; l += 2) {
+							checks += "<li class='list-group-item' style='text-transform: capitalize;'>" + test[l] + ": " + test[l+1] + "<button type='button' style='position: absolute; right: 1rem; top: .3rem;' class='btn btn-dark check' onClick='randNum(1, 20, " +test[l+1] + ");'>Check</button></li>";
+						}
 					}
-					htmlcode += ("<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>" + info.initiative + " - " + field.title.$t + "</h5>" + gold + speed);
-					htmlcode += ("<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div></div></div>");
+					htmlcode += (start + info.initiative + " - " + field.title.$t + "</h5>" + gold + speed + "<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div>" + checks +"</ul></div></div>");
 					$('#characters').append(htmlcode);
 				})
 			})
 		};
-		setInterval(database, 1000);
+		var reloadStats = setInterval(database, 1000);
 		//database();
+		var isRefresh = true;
+		function reloadToggle() {
+			if (isRefresh) {
+				isRefresh = false;
+				clearInterval(reloadStats);
+			} else {
+				isRefresh = true;
+				reloadStats = setInterval(database, 1000);
+			}
+		}
+		function randNum(min, max, add)
+		{
+			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
+				alert(+data + +add);
+			});
+		}
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
