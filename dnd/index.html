@@ -49,8 +49,12 @@
 					var start = "";
 					if (field.title.$t.includes("Monster") || field.title.$t.includes("Enemy") || field.title.$t.includes("Unfriendly")) {
 						theme = "text-white bg-danger";
-						levelfield = "NPC"
 						start = "<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>";
+						if (info.playername != null) {
+							levelfield = info.playername + " the " + info.race + " " + info.class;
+						} else {
+							levelfield = "NPC"
+						}
 					} else if (field.title.$t.includes("Friendly")) {
 						theme = "text-white bg-dark";
 						if (info.playername == null) {
