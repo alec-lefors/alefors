@@ -68,7 +68,7 @@
 						start = "<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>";
 					} else {
 						theme = "bg-light";
-						start = "<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;' data-toggle='collapse' href='#" + info.playername + "'' role='button' aria-expanded='false' aria-controls='" + info.playername + "' onClick='reloadToggle();'><h5 class='card-title'>";
+						start = "<div class='container col-md-12 col-lg-4 align-items-center' style='margin-bottom: 2rem;'><div id='c" + i + "' class='card " + theme + "'><div class='cardbody' style='padding: 1rem;' data-toggle='collapse' href='#" + info.playername + "'' role='button' aria-expanded='false' aria-controls='" + info.playername + "'><h5 class='card-title'>";
 						healthbar = "<div class='progress' style='height: 30px; margin-top: 4px;'><div style='width: " + (info.health / info.hp) * 100 + "%' class='progress-bar bg-success' role='progressbar' aria-valuenow='" + info.health + "' aria-valuemin='0' aria-valuemax='" + info.hp + "'>" + info.health + "/" + info.hp + "</div></div>";
 						levelfield = "Level " + info.level + " " + info.class;
 						gold = ("<p style='top: 1rem; position: absolute; right: 1rem;'>" + info.gold + "<img src='gold.png' width='15' style='padding-bottom:2px;'/></p>");
@@ -81,20 +81,22 @@
 					htmlcode += (start + info.initiative + " - " + field.title.$t + "</h5>" + gold + speed + "<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div>" + checks +"</ul></div></div>");
 					$('#characters').append(htmlcode);
 				})
+				$('.collapse').on('show.bs.collapse', function () {
+					clearInterval(reloadStats);
+					console.log("hi");
+				})
+				$('.collapse').on('hidden.bs.collapse', function () {
+					if($('.show').length == 0) {
+						reloadStats = setInterval(database, 1000);
+						console.log("bye");
+					}
+				})
 			})
 		};
 		var reloadStats = setInterval(database, 1000);
 		//database();
-		var isRefresh = true;
-		function reloadToggle() {
-			if (isRefresh) {
-				isRefresh = false;
-				clearInterval(reloadStats);
-			} else {
-				isRefresh = true;
-				reloadStats = setInterval(database, 1000);
-			}
-		}
+		
+
 		function randNum(min, max, add)
 		{
 			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
