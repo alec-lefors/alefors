@@ -83,12 +83,10 @@
 				})
 				$('.collapse').on('show.bs.collapse', function () {
 					clearInterval(reloadStats);
-					console.log("hi");
 				})
 				$('.collapse').on('hidden.bs.collapse', function () {
 					if($('.show').length == 0) {
 						reloadStats = setInterval(database, 1000);
-						console.log("bye");
 					}
 				})
 			})
