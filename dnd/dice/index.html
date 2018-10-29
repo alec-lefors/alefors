@@ -18,40 +18,64 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h2>Dice Roller</h2>
-		<div class="btn-group dropright" id="selection">
+		<h2>Skill Check</h2>
+		<div class="btn-group dropright">
 			<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose your character</button>
-			<div class="dropdown-menu">
-				<button class="dropdown-item" id="2" onClick="selection(this.id)">Elqen</a>
-				<button class="dropdown-item" id="3" onClick="selection(this.id)">Boiler Makh</a>
-				<button class="dropdown-item" id="4" onClick="selection(this.id)">Tealeaf</a>
-				<button class="dropdown-item" id="5" onClick="selection(this.id)">Smithwick</a>
-				<button class="dropdown-item" id="6" onClick="selection(this.id)">Maester Conn</a>
-				<button class="dropdown-item" id="7" onClick="selection(this.id)">Draionir</a>
+			<div class="dropdown-menu" id="selection" style="margin-top: 2rem;">
 			</div>
 		</div>
 		<div id="diceapp">
-			
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		var htmlcode = "";
-		function selection(clicked_id)
-		{
-			console.log(clicked_id);
-			var url = "https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/" + clicked_id + "/public/basic?alt=json";
-			$.getJSON(url, function(data) {
-				console.log(data);
-				var name = data.feed.title.$t;
+		var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/2/public/basic?alt=json';
+		$.getJSON(url, function(data) {
+			$.each(data.feed.entry, function(i, field){
+				var array = field.content.$t.split(', ');
+				var test = array.toString().split(/[:\s|,]+/);
+				var info = new Array();
+				for (var l = 0; l < test.length - 1; l += 2) {
+					info[test[l]] = test[l+1];
+				}
+				$('#selection').append("<button class='dropdown-item' id='" + i + "' onClick=' characterSelect(this.id)'>" + field.title.$t + "</a>");
+			})
+		});
+		function characterSelect(i) {
+			var database = function() {
+				var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/2/public/basic?alt=json';
+				$.getJSON(url, function(data) {
+					$("#diceapp").empty();
+					var field = data.feed.entry[i];
+					var array = field.content.$t.split(', ');
+					var test = array.toString().split(/[:\s|,]+/);
+					var character = new Array();
+					for (var l = 0; l < test.length - 1; l += 2) {
+						character[test[l]] = test[l+1];
+					}
+					var skills = "";
+					console.log(character.playername);
+					for (var l = 2; l < test.length - 1; l += 2) {
+						skills += "<button type='button' class='list-group-item list-group-item-action' style='text-transform: capitalize;' onClick='randNum(1, 20, " +test[l+1] + ");'>" + test[l] + ": " + test[l+1] + "</button>";
+					}
+					var htmlcode = "<div class='list-group' id='skills'><button type='button' class='list-group-item list-group-item-action active' style='margin-top: 2rem;' disabled><b>" + character.playername + "'s skills:</b></button>" + skills + "</div>";
+					$('#diceapp').append(htmlcode);
+				})
+			};
+			database();
+		}
 
-				htmlcode += "<h2>" + name + "</h2>";
-				$('#diceapp').html(htmlcode);
+		function randNum(min, max, add)
+		{
+			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
+				alert(+data + +add);
 			});
 		}
+
+
 	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	
 </body>
 </html>
