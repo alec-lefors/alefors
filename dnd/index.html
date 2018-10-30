@@ -24,6 +24,7 @@
 		<div class="row" id="characters">
 			
 		</div>
+		<button type='button' class='btn btn-dark check' onClick='rollInit();'>Roll Initiative</button>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -53,7 +54,9 @@
 						if (info.playername != null) {
 							levelfield = info.playername + " the " + info.race + " " + info.class;
 						} else {
-							levelfield = "NPC"
+							if (info.race != null) levelfield = info.race;
+							if (info.class != null) levelfield += " " + info.class;
+							if (info.race == null && info.class == null) levelfield = "NPC";
 						}
 					} else if (field.title.$t.includes("Friendly")) {
 						theme = "text-white bg-dark";
@@ -78,8 +81,10 @@
 							checks += "<li class='list-group-item' style='text-transform: capitalize;'>" + test[l] + ": " + test[l+1] + "<button type='button' style='position: absolute; right: 1rem; top: .3rem;' class='btn btn-dark check' onClick='randNum(1, 20, " +test[l+1] + ");'>Check</button></li>";
 						}
 					}
-					htmlcode += (start + info.initiative + " - " + field.title.$t + "</h5>" + gold + speed + "<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div>" + checks +"</ul></div></div>");
-					$('#characters').append(htmlcode);
+					if (field.title.$t != null) {
+						htmlcode += (start + info.initiative + " - " + field.title.$t + "</h5>" + gold + speed + "<h6 class='card-subtitle'>" + levelfield + "</h6>" + healthbar + "</div>" + checks +"</ul></div></div>");
+						$('#characters').append(htmlcode);
+					}
 				})
 				$('.collapse').on('show.bs.collapse', function () {
 					clearInterval(reloadStats);
@@ -100,6 +105,11 @@
 			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
 				alert(+data + +add);
 			});
+		}
+
+		function rollInit()
+		{
+			$.getJSON("https://script.google.com/macros/s/AKfycbxtoC_7qt6gIiDjDxDF0oxzDOEx-gLU7xlLM_xtA_4/dev");
 		}
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
