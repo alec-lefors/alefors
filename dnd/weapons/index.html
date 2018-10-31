@@ -14,12 +14,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<a class="nav-item nav-link" href="../">Home</a>
-			<a class="nav-item nav-link active" href="">Skill Checks<span class="sr-only">(current)</span></a>
-			<a class="nav-item nav-link" href="../weapons">Weapon Checks</a>
+			<a class="nav-item nav-link" href="../dice">Skill Checks</a>
+			<a class="nav-item nav-link active" href="">Weapon Checks<span class="sr-only">(current)</span></a>
 		</div>
 	</nav>
 	<div class="container">
-		<h2>Skill Check</h2>
+		<h2>Weapon Check</h2>
 		<div class="btn-group dropright">
 			<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose your character</button>
 			<div class="dropdown-menu" id="selection" style="margin-top: 2rem;">
@@ -30,7 +30,7 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/2/public/basic?alt=json';
+		var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/3/public/basic?alt=json';
 		$.getJSON(url, function(data) {
 			$.each(data.feed.entry, function(i, field){
 				var array = field.content.$t.split(', ');
@@ -44,7 +44,7 @@
 		});
 		function characterSelect(i) {
 			var database = function() {
-				var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/2/public/basic?alt=json';
+				var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/3/public/basic?alt=json';
 				$.getJSON(url, function(data) {
 					$("#diceapp").empty();
 					var field = data.feed.entry[i];
@@ -59,7 +59,7 @@
 					for (var l = 2; l < test.length - 1; l += 2) {
 						skills += "<button type='button' class='list-group-item list-group-item-action' style='text-transform: capitalize;' onClick='randNum(1, 20, " +test[l+1] + ");'>" + test[l] + ": " + test[l+1] + "</button>";
 					}
-					var htmlcode = "<div class='list-group' id='skills'><button type='button' class='list-group-item list-group-item-action active' style='margin-top: 2rem;' disabled><b>" + character.playername + "'s skills:</b></button>" + skills + "</div>";
+					var htmlcode = "<div class='list-group' id='skills'><button type='button' class='list-group-item list-group-item-action active' style='margin-top: 2rem;' disabled><b>" + character.playername + "'s " + character.attack + "</b></button>" + skills + "</div>";
 					$('#diceapp').append(htmlcode);
 				})
 			};
