@@ -27,8 +27,7 @@
 				<button class='dropdown-item' id='skill' onclick='characterSelect("weapon");'>Weapon</a>
 			</div>
 		</div>
-		<div id="diceapp" class="container row">
-		</div>
+		<div id="diceapp" class="container row"></div>
 	</div>
 	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="attackModal" aria-hidden="true" id="attackModal">
 		<div class="modal-dialog modal-sm">
@@ -219,6 +218,7 @@
 				$('#transferDamage').attr('data-damage', $('#transferDamage1').attr('data-damage'));
 				$('#damageModal').modal('hide');
 				$('#damageResult').text("You rolled a " + damageRoll + ".");
+				$('#successName').text("Damage");
 				$('#successModal').modal('show');
 			});
 		}
