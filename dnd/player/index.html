@@ -23,8 +23,8 @@
 		<div class="btn-group dropright">
 			<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a check type </button>
 			<div class="dropdown-menu" id="selection" style="margin-top: 2rem;">
-				<button class='dropdown-item' id='skill' onClick='characterSelect("skill");'>Skill</a>
-				<button class='dropdown-item' id='skill' onClick='characterSelect("weapon");'>Weapon</a>
+				<button class='dropdown-item' id='skill' onclick='characterSelect("skill");'>Skill</a>
+				<button class='dropdown-item' id='skill' onclick='characterSelect("weapon");'>Weapon</a>
 			</div>
 		</div>
 		<div id="diceapp" class="container row">
@@ -54,7 +54,45 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type='button' class='btn btn-primary' onClick='randNum(1, 20, +$("#attackBonus").val() + +$("#attackBonusExtra").val());'>Attack</button>
+					<button id='transferDamage1' type='button' class='btn btn-primary' onclick='attackDice(1, 20, +$("#attackBonus").val() + +$("#attackBonusExtra").val());' data-damage='1d4'>Attack</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="damageModal" aria-hidden="true" id="damageModal">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Damage</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h5 id="attackResult">You rolled a 0.</h5>
+					<p>Was the attack successful?</p>
+				</div>
+				<div class="modal-footer">
+					<button id='transferDamage' onclick="damageDice(this);" type='button' class='btn btn-success' data-damage='1d4'>Yes</button>
+					<button type='button' class='btn btn-danger' data-target='#damageModal' data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true" id="successModal">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Damage</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h5 id="damageResult">You did 0 damage.</h5>
+				</div>
+				<div class="modal-footer">
+					<button type='button' class='btn' data-target='#damageModal' data-dismiss="modal">Ok</button>
 				</div>
 			</div>
 		</div>
@@ -93,7 +131,7 @@
 						}
 						var skills = "";
 						for (var l = 2; l < test.length - 1; l += 2) {
-							skills += "<button type='button' class='list-group-item list-group-item-action' style='text-transform: capitalize;' onClick='randNum(1, 20, " +test[l+1] + ");'>" + test[l] + ": " + test[l+1] + "</button>";
+							skills += "<button type='button' class='list-group-item list-group-item-action' style='text-transform: capitalize;' onclick='attackDice(1, 20, " +test[l+1] + ");'>" + test[l] + ": " + test[l+1] + "</button>";
 						}
 						var htmlcode = "<div class='col-md-12'><div class='list-group' id='skills'><button type='button' class='list-group-item list-group-item-action active' style='margin-top: 2rem;' disabled><b>" + character.playername + "'s skills:</b></button>" + skills + "</div></div>";
 						$('#diceapp').append(htmlcode);
@@ -117,20 +155,25 @@
 							character["critical"] = arrayTwo[7];
 							character["range"] = arrayTwo[9];
 							character["typeofweapon"] = arrayTwo[11];
-							var htmlcode = "<div class='col-md-12 col-lg-4 align-items-center' style='margin-bottom: 1rem; margin-top: 1rem;'><div id='" + l + "' class='card bg-light'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>" + character.attack + "</h5><h6 class='card-subtitle'>" + character.typeofweapon + "</h6></div><ul class='list-group list-group-flush'><li class='list-group-item'>Damage: " + character.damage + "</li><li class='list-group-item'>Range: " + character.range + "</li><button class='list-group-item list-group-item-action active' type='button' data-toggle='modal' data-wname='" + character.attack + "' data-bonus='" + character.bonus + "' data-target='#attackModal'>Attack</button></ul></div></div>";
-
-							//var htmlcode = "<div class='list-group' id='skills'><button type='button' class='list-group-item list-group-item-action active' style='margin-top: 2rem;' disabled><b>" + field.title.$t + "'s " + character.attack + "</b></button>" + skills + "<button class='list-group-item list-group-item-action active' type='button' data-toggle='modal' data-target='#attackModal'>Attack</button>";
+							var htmlcode = "<div class='col-md-12 col-lg-4 align-items-center' style='margin-bottom: 1rem; margin-top: 1rem;'><div id='" + l + "' class='card bg-light'><div class='cardbody' style='padding: 1rem;'><h5 class='card-title'>" + character.attack + "</h5><h6 class='card-subtitle'>" + character.typeofweapon + "</h6></div><ul class='list-group list-group-flush'><li class='list-group-item'>Damage: " + character.damage + "</li><li class='list-group-item'>Range: " + character.range + "</li><button class='list-group-item list-group-item-action active' type='button' data-toggle='modal' data-damage='" + character.damage + "' data-wname='" + character.attack + "' data-bonus='" + character.bonus + "' data-target='#attackModal'>Attack</button></ul></div></div>";
 							$('#diceapp').append(htmlcode);
 							$('#attackRoll').replaceWith('<input type="text" class="form-control" value="' + character.bonus + '" aria-label="attackBonus" aria-describedby="basic-addon1" id="attackBonus" disabled>');
 						}
 					})
 					$('#attackModal').on('show.bs.modal', function (event) {
-						var button = $(event.relatedTarget)
-						var bonus = button.data('bonus')
-						var wname = button.data('wname')
-						var modal = $(this)
-						modal.find('.modal-title').text(wname)
-						$('#attackBonus').attr("value", bonus)
+						var button = $(event.relatedTarget);
+						var bonus = button.data('bonus');
+						var wname = button.data('wname');
+						var damage = button.data('damage');
+						var modal = $(this);
+						modal.find('.modal-title').text(wname);
+						$('#attackBonus').attr("value", bonus);
+						$('#transferDamage1').attr("data-damage", damage);
+					})
+					$('#successModal').on('show.bs.modal', function (event) {
+						var button = $(event.relatedTarget);
+						var damage = button.data('damage');
+						$('#damageModal').modal('hide');
 					})
 				}
 			};
@@ -144,6 +187,39 @@
 			});
 		}
 
+		function attackDice(min, max, add)
+		{
+			var attackRoll = 0;
+			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
+				attackRoll = (+data + +add);
+				$('#transferDamage').attr('data-damage', $('#transferDamage1').attr('data-damage'));
+				$('#attackModal').modal('hide');
+				$('#attackResult').text("You rolled a " + attackRoll + ".");
+				$('#damageModal').modal('show');
+			});
+		}
+
+		function damageDice(dmg)
+		{
+			var damage = $(dmg).attr('data-damage');
+			var min = 0;
+			var max = 0;
+			var add = 0;
+			var dmgArray = damage.replace(/\s/g,'').split(/d|\+/g);
+			min = +dmgArray[0];
+			max = +dmgArray[1];
+			if (dmgArray.length == 3) {
+				add = +dmgArray[2];
+			}
+			var damageRoll = 0;
+			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
+				damageRoll = (+data + add);
+				$('#transferDamage').attr('data-damage', $('#transferDamage1').attr('data-damage'));
+				$('#damageModal').modal('hide');
+				$('#damageResult').text("You rolled a " + damageRoll + ".");
+				$('#successModal').modal('show');
+			});
+		}
 
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
