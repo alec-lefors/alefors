@@ -49,7 +49,9 @@
 					$("#diceapp").empty();
 					var field = data.feed.entry[i];
 					var array = field.content.$t.split(', ');
-					var test = array.toString().split(/[:\s|,]+/);
+					console.log(array.toString());
+					var test = array.toString().split(/\:\s|,/g);
+					console.log(test);
 					var character = new Array();
 					for (var l = 0; l < test.length - 1; l += 2) {
 						character[test[l]] = test[l+1];
