@@ -73,7 +73,7 @@
 				if (location.hash.substr(1) != i) {
 					$('.navbar-nav').append("<a class='nav-item nav-link' href='player#" + i + "'>" + field.title.$t + "</a>");
 				} else {
-					$('.navbar-nav').append("<a class='nav-item nav-link active' href='./#" + i + "'>" + field.title.$t + "<span class='sr-only'>(current)</span></a>");
+					$('.navbar-nav').append("<a class='nav-item nav-link active' href='#" + i + "'>" + field.title.$t + "<span class='sr-only'>(current)</span></a>");
 					$('#playerHeader').html(field.title.$t);
 				}
 			})
