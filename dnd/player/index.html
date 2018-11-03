@@ -83,7 +83,7 @@
 		<div class="modal-dialog modal-sm">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Damage</h5>
+					<h5 class="modal-title" id="successName" style="text-transform: capitalize;">Damage</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -131,7 +131,7 @@
 						}
 						var skills = "";
 						for (var l = 2; l < test.length - 1; l += 2) {
-							skills += "<button type='button' class='list-group-item list-group-item-action' style='text-transform: capitalize;' onclick='attackDice(1, 20, " +test[l+1] + ");'>" + test[l] + ": " + test[l+1] + "</button>";
+							skills += "<button type='button' class='list-group-item list-group-item-action' style='text-transform: capitalize;' data-sname='" + test[l] + "' onclick='randNum(1, 20, " +test[l+1] + ", this);'>" + test[l] + ": " + test[l+1] + "</button>";
 						}
 						var htmlcode = "<div class='col-md-12'><div class='list-group' id='skills'><button type='button' class='list-group-item list-group-item-action active' style='margin-top: 2rem;' disabled><b>" + character.playername + "'s skills:</b></button>" + skills + "</div></div>";
 						$('#diceapp').append(htmlcode);
@@ -171,8 +171,6 @@
 						$('#transferDamage1').attr("data-damage", damage);
 					})
 					$('#successModal').on('show.bs.modal', function (event) {
-						var button = $(event.relatedTarget);
-						var damage = button.data('damage');
 						$('#damageModal').modal('hide');
 					})
 				}
@@ -180,10 +178,14 @@
 			database();
 		}
 
-		function randNum(min, max, add)
+		function randNum(min, max, add, btn)
 		{
 			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
-				alert(+data + +add);
+				var skillRoll = (+data + +add);
+				$('#damageResult').text("You rolled a " + skillRoll + ".");
+				var sname = $(btn).data('sname');
+				$('#successName').text(sname);
+				$('#successModal').modal('show');
 			});
 		}
 

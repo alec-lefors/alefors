@@ -25,6 +25,24 @@
 		</div>
 		<button type='button' class='btn btn-dark check' onClick='rollInit();'>Roll Initiative</button>
 	</div>
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true" id="successModal">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="successName" style="text-transform: capitalize;">Roll</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h5 id="damageResult">You rolled a 0.</h5>
+				</div>
+				<div class="modal-footer">
+					<button type='button' class='btn' data-target='#damageModal' data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		var url = 'https://spreadsheets.google.com/feeds/list/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/2/public/basic?alt=json';
@@ -91,7 +109,7 @@
 						speed = ("<p style='top: 2.7rem; position: absolute; right: 1rem;'>" + info.speed + "<img src='speed.png' width='15' style='padding-bottom:2px;'/></p>");
 						checks = ("<ul class='list-group list-group-flush collapse' id='" + info.playername + "'>");
 						for (var l = test.length - 12; l < test.length - 1; l += 2) {
-							checks += "<li class='list-group-item' style='text-transform: capitalize;'>" + test[l] + ": " + test[l+1] + "<button type='button' style='position: absolute; right: 1rem; top: .3rem;' class='btn btn-dark check' onClick='randNum(1, 20, " +test[l+1] + ");'>Check</button></li>";
+							checks += "<li class='list-group-item' style='text-transform: capitalize;'>" + test[l] + ": " + test[l+1] + "<button type='button' style='position: absolute; right: 1rem; top: .3rem;' class='btn btn-dark check' onClick='randNum(1, 20, " +test[l+1] + ", this);' data-aname='" + test[l] + "'>Check</button></li>";
 						}
 					}
 					if (field.title.$t != null) {
@@ -113,10 +131,14 @@
 		// database();
 		
 
-		function randNum(min, max, add)
+		function randNum(min, max, add, btn)
 		{
 			$.get("https://www.random.org/integers/?num=1&min=" + min + "&max=" + max + "&col=1&base=10&format=plain&rnd=new", function(data) {
-				alert(+data + +add);
+				var skillRoll = (+data + +add);
+				$('#damageResult').text("You rolled a " + skillRoll + ".");
+				var aname = $(btn).data('aname');
+				$('#successName').text(aname);
+				$('#successModal').modal('show');
 			});
 		}
 
