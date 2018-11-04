@@ -19,16 +19,20 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h2 id="playerHeader">Player</h2>
-		<div class="btn-group dropright">
-			<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a check type </button>
-			<div class="dropdown-menu" id="selection" style="margin-top: 2rem;">
-				<button class='dropdown-item' id='skill' onclick='characterSelect("skill");'>Skill</a>
-				<button class='dropdown-item' id='skill' onclick='characterSelect("weapon");'>Weapon</a>
+		<div class="jumbotron">
+			<div class="container">
+				<h2 id="playerHeader" class="display-4">Player</h2>
+				<div class="btn-group dropright">
+					<button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select a check type </button>
+					<div class="dropdown-menu" id="selection" style="margin-top: 2rem;">
+						<button class='dropdown-item' id='skill' onclick='characterSelect("skill");'>Skill</a></button>
+						<button class='dropdown-item' id='skill' onclick='characterSelect("weapon");'>Weapon</a></button>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="diceapp" class="container row"></div>
-		<div class="embed-responsive embed-responsive-16by9 d-none d-lg-block" style="margin-top: 2rem; margin-bottom: 2rem;">
+		<div id="diceapp" class="row"></div>
+		<div class="embed-responsive embed-responsive-16by9 d-none d-lg-block" style="margin-top: 2rem; margin-bottom: 2rem; border-radius: 20px; overflow: hidden;">
 			<iframe class="embed-responsive-item" src="https://docs.google.com/spreadsheets/d/1vi-VZCI-4KuRF1hQL_R8-ofy_lhAt5EjhqJBm7QvA1M/edit?usp=sharing" allowfullscreen></iframe>
 		</div>
 	</div>
