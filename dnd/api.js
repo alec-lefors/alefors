@@ -22,5 +22,6 @@ if (method.includes("roll")) {
 	$.get("https://www.random.org/integers/?num=" + times + "&min=" + 1 + "&max=" + dice + "&col=1&base=10&format=plain&rnd=new", function(data) {
 		var skillRoll = (+data);
 		$("body").html(skillRoll);
+		document.title = skillRoll;
 	});
 }
