@@ -259,6 +259,7 @@ footer a {
 
 .list-horizontal li {
 	display: inline-block;
+	color: white;
 }
 
 .list-horizontal li:before {
